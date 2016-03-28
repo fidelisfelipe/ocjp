@@ -2,6 +2,7 @@ package ocjp.collections.generic;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
@@ -47,5 +48,29 @@ public class GenericsTest {
 		Object num4 = num2.toString();
 		System.out.println(num1.equals(num4));
 	}
+	
+	@Test
+	public void test3() throws Exception {
+		class Super{}
+		class Sub extends Super{}
+		class Sub2 extends Sub{}
+		ArrayList a = new ArrayList();
+		a.add(new Super());
+		a.add(new Sub());
+		a.add(new Sub2());
+		
+		for (Object object : a) {
+			System.out.println(object);
+		}
+		
+	}
+	
+	@Test
+	public void testCast() throws Exception {
+		Integer n1 = new Integer(0);
+		Byte n2 = new Byte((byte)0);
+		System.out.println(n1.equals(n2));
+	}
+	
 	
 }
