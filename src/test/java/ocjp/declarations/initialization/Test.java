@@ -5,11 +5,21 @@ import ocjp.declarations.initialization.scoping.A.B;//ok
 //import static ocjp.declarations.initialization.scoping.A.*;//ok
 //import static ocjp.declarations.initialization.scoping.A.B;//ok
 //import static ocjp.declarations.initialization.scoping.A.B.*;//fail
-
-public class Test {
+import java.lang.Math;
+interface A{String a = "A";}
+public class Test extends Thread{
+	String $testando = ""; 
 	public static void main(String[] args) {
-		for (B string : B.values()) {
+		Object test = new Object();
+		
+	}
+	class Testando implements Runnable{
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
 			
 		}
 	}
+	
 }

@@ -7,7 +7,6 @@ import org.junit.Test;
 class Testando{
 	public Testando() {
 	}
-	
 	void testMethod(){
 		try{
 			System.out.println("Java");
@@ -23,6 +22,16 @@ public class FlowControlTest {
 	@Test
 	public void test() throws Exception {
 		new Testando().testMethod();
+	}
+	
+	@Test
+	public void testarInstance(){
+		Integer i = 0;
+		if(i instanceof Object){
+			System.err.println(true);
+		}else{
+			System.out.println(false);
+		}
 	}
 	
 	@Test

@@ -10,6 +10,13 @@ import org.junit.Test;
 public class StringTest {
 
 	@Test
+	public void testString() throws Exception {
+		String a = new String("A");
+		String a1 = new String("A");
+		assertFalse(a == a1);
+	}
+	
+	@Test
 	public void test() throws Exception {
 		String string = new String();
 		String regex = "";
