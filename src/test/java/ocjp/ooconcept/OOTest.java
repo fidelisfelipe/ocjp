@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package ocjp.ooconcept;
 
 import static org.junit.Assert.*;
@@ -71,3 +72,35 @@ public class OOTest {
 	}
 	
 }
+=======
+package ocjp.ooconcept;
+
+import org.junit.Test;
+
+public class OOTest {
+
+	@Test
+	public void test(){
+		class Test{
+			public void test(){}
+		}
+		class TestCustom extends Test{
+//			public void test() throws Exception{
+				//a subclasse não pode ser mais restritiva que a superclass
+//			}
+		}
+		
+	}
+	
+	@Test
+	public void testSuper(){
+		class Test{
+			public void test(){}
+		}
+		class TestCustom extends Test{
+			public void test() {super.test();};
+		}
+	}
+	
+}
+>>>>>>> fed9ffc4680653b996d711858a35673039b897e7

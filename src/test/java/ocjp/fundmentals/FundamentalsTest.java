@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package ocjp.fundmentals;
 
 import static org.junit.Assert.*;
@@ -70,3 +71,18 @@ public class FundamentalsTest {
 	}
 	
 }
+=======
+package ocjp.fundmentals;
+
+import org.junit.Test;
+
+public class FundamentalsTest {
+	
+	@Test
+	public void test(){
+		int num = 2;
+		long result = num*0.5;
+	}
+	
+}
+>>>>>>> fed9ffc4680653b996d711858a35673039b897e7
