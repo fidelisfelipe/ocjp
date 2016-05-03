@@ -6,9 +6,21 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
-
 import org.junit.Test;
-
+class GenericDeclarations<T>{
+//	static T getOb(){//não pode criar generic para uso static por trabalhar em tempo de execução
+//		return null;
+//	}
+	T getOb(){
+		return null;
+	}
+}
+class GenericOne{
+	
+}
+class GenericTwo extends GenericOne{
+	
+}
 public class GenericsTest {
 
 	@Test
@@ -19,10 +31,10 @@ public class GenericsTest {
 		list.add(2);
 		list.add(3);
 		list.add(3);
-		
+
 		assertEquals("não deve conter itens repetivos ", sizeExpected, list.size());
 	}
-	
+
 	@Test
 	public void test(){
 		Vector<String> string = new Vector<String>();
@@ -72,5 +84,23 @@ public class GenericsTest {
 		System.out.println(n1.equals(n2));
 	}
 	
+	@Test
+	public void testDeclarationWarning(){
+		ArrayList list = new ArrayList();
+		list.add(new GenericOne());
+		list.add(new GenericTwo());
+		for (Object object : list) {
+			assertTrue(object.getClass() == GenericOne.class 
+					|| object.getClass() == GenericTwo.class);
+		}
+	}
+	
+	@Test
+	public void testGenericCast() throws Exception {
+		Integer n1 = new Integer(0);
+		Byte n2 = new Byte((byte)0);
+		assertFalse(n1.equals(n2));
+		assertTrue(n1.intValue() == n2.intValue());
+	}
 	
 }

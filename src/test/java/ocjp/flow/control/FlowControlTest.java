@@ -1,6 +1,6 @@
 package ocjp.flow.control;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -44,5 +44,19 @@ public class FlowControlTest {
 			
 			assertEquals("deve conter a string esperada",expected, result);
 			
-		}
+	}
+	@Test
+	public void testAssertsDeclaration() throws Exception {
+		String name = null;
+		assert (name != null);
+		
+//		int i = 10; assert(i=15+i++);declaração incorreta pois não retorna boolean
+		
+		boolean flag = false;
+		assert(flag = true);
+		
+		String string = null;
+		assert false: string;
+		
+	}
 }
