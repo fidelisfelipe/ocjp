@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package ocjp.api.content;
 
 import static org.junit.Assert.*;
@@ -18,6 +17,7 @@ import java.util.Formatter;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import org.junit.Test;
@@ -27,6 +27,17 @@ public class ContentTest {
 	@Test
 	public void test(){
 		Scanner scanner = new Scanner(System.in);
+	}
+
+	@Test
+	public void testPattner() throws Exception {
+		String regex = "\\d";
+		String input = "Java1is2object3oriented4language";
+		Pattern p = Pattern.compile(regex);
+		String[] items = p.split(input);
+		for (int i = 0; i < items.length; i++) {
+			System.out.println(items[i]);
+		}
 	}
 	
 	@Test
@@ -193,41 +204,52 @@ public class ContentTest {
 //		Reader in2 = new BufferedReader(new Reader(file));
 	}
 	
-	
-}
-=======
-package ocjp.api.content;
-
-import static org.junit.Assert.*;
-
-import java.util.Locale;
-import java.util.Scanner;
-
-import org.junit.Test;
-
-public class ContentTest {
-
 	@Test
-	public void test(){
-		Scanner scanner = new Scanner(System.in);
-	}
-	
-	@Test
-	public void testLocale(){
-		Locale[] locales = Locale.getAvailableLocales();
-		System.out.println(locales.toString());
-	}
-	
-	@Test
-	public void testLocalo2() throws Exception {
-		Locale locale = Locale.JAPAN;
-		//language lowercase two-letter ISO-639 code.
-		//country uppercase two-letter ISO-3166 code.
-
-		Locale locale1 = new Locale("ja", "JP");
+	public void testConceptStringBuilderBuffer() throws Exception {
 		
-		assertEquals(locale, locale1);
+//		StringBuilder
+//*		z = 'start';
+//*		z.append("le"); startle
+//*		z.insert(4,"le"); starlet
+//*		A mutable sequence of characters. 
+//*		This class provides an API compatible with StringBuffer, but with no guarantee of synchronization. 
+//		This class is designed for use as a drop-in replacement for StringBuffer in places where the string buffer was being used by a single thread (as is generally the case). 
+//*		Where possible, it is recommended that this class be used in preference to StringBuffer as it will be faster under most implementations. 
+//		The principal operations on a StringBuilder are the append and insert methods, which are overloaded so as to accept data of any type. 
+//		Each effectively converts a given datum to a string and then appends or inserts the characters of that string to the string builder. 
+//*		The append method always adds these characters at the end of the builder; 
+//*		the insert method adds the characters at a specified point. 
+//		For example, if z refers to a string builder object whose current contents are "start", 
+//*		then the method call z.append("le") would cause the string builder to contain "startle", 
+//*		whereas z.insert(4, "le") would alter the string builder to contain "starlet". 
+//		In general, if sb refers to an instance of a StringBuilder, then sb.append(x) has the same effect as sb.insert(sb.length(), x). 
+//		Every string builder has a capacity. 
+//		As long as the length of the character sequence contained in the string builder does not exceed the capacity, 
+//		it is not necessary to allocate a new internal buffer. If the internal buffer overflows, it is automatically made larger. 
+//*		Instances of StringBuilder are not safe for use by multiple threads. 
+//*		If such synchronization is required then it is recommended that java.lang.StringBuffer be used. 
+
+//		StringBuffer
+//*		A thread-safe, mutable sequence of characters. 
+//*		A string buffer is like a String, but can be modified. 
+//		At any point in time it contains some particular sequence of characters, 
+//		but the length and content of the sequence can be changed through certain method calls. 
+//*		String buffers are safe for use by multiple threads. 
+//*		The methods are synchronized where necessary so that all the operations on any particular instance behave as if they occur in some serial 
+//		order that is consistent with the order of the method calls made by each of the individual threads involved. 
+//		The principal operations on a StringBuffer are the append and insert methods, which are overloaded so as to accept data of any type. 
+//		Each effectively converts a given datum to a string and then appends or inserts the characters of that string to the string buffer. 
+//		The append method always adds these characters at the end of the buffer; the insert method adds the characters at a specified point. 
+//		For example, if z refers to a string buffer object whose current contents are "start", then the method call z.append("le") would cause the string buffer to contain "startle", 
+//		whereas z.insert(4, "le") would alter the string buffer to contain "starlet". 
+//		In general, if sb refers to an instance of a StringBuffer, then sb.append(x) has the same effect as sb.insert(sb.length(), x). 
+//		Whenever an operation occurs involving a source sequence (such as appending or inserting from a source sequence)
+//*		this class synchronizes only on the string buffer performing the operation, not on the source. 
+//		Every string buffer has a capacity. As long as the length of the character sequence contained in the string buffer does not exceed the capacity,
+//*		it is not necessary to allocate a new internal buffer array. If the internal buffer overflows, it is automatically made larger. 
+//*		As of release JDK 5, this class has been supplemented with an equivalent class designed for use by a single thread, StringBuilder. 
+//*		The StringBuilder class should generally be used in preference to this one, as it supports all of the same operations but it is faster, as it performs no synchronization.
+		
 	}
-	
 }
->>>>>>> fed9ffc4680653b996d711858a35673039b897e7
+

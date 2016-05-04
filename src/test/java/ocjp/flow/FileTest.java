@@ -2,10 +2,10 @@ package ocjp.flow;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import org.junit.Test;
-
+class A3{}
+class B extends A3{}
 public class FileTest {
 
 	@Test
@@ -22,16 +22,10 @@ public class FileTest {
 		}
 		
 		
-		class A{}
-		class B extends A{}
+		A3 B = new A3();
+		B A3 = new B();
+		A3 = (B)B;
 		
-		A B = new A();
-		B A = new B();
-		A = (B)B;
-		
-		try{
-			
-		}
 		
 	}
 	

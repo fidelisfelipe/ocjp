@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package ocjp.ooconcept;
 
 import static org.junit.Assert.*;
@@ -25,6 +24,13 @@ public class OOTest {
 		Pai Pai = new Pai();
 		Filho Filho = new Filho();
 		Filho = (Filho)Pai;//não pode converter o pai pro filho
+		
+//		Filho = Pai; 
+//		Filho = (Pai)Pai;
+		Filho = (Filho) Pai;
+		Pai = (Filho)Filho;
+		Pai = Filho;
+		Pai = (Pai)Filho;
 	}
 	@Test
 	public void testCastClassSuccess() {
@@ -72,35 +78,4 @@ public class OOTest {
 	}
 	
 }
-=======
-package ocjp.ooconcept;
 
-import org.junit.Test;
-
-public class OOTest {
-
-	@Test
-	public void test(){
-		class Test{
-			public void test(){}
-		}
-		class TestCustom extends Test{
-//			public void test() throws Exception{
-				//a subclasse não pode ser mais restritiva que a superclass
-//			}
-		}
-		
-	}
-	
-	@Test
-	public void testSuper(){
-		class Test{
-			public void test(){}
-		}
-		class TestCustom extends Test{
-			public void test() {super.test();};
-		}
-	}
-	
-}
->>>>>>> fed9ffc4680653b996d711858a35673039b897e7

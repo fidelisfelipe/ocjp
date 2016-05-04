@@ -1,6 +1,6 @@
 package ocjp.concurrency;
 
-class A extends Thread{
+class A1 extends Thread{
 	@Override
 	public void run() {
 		try {
@@ -13,7 +13,7 @@ class A extends Thread{
 }
 class Teste<Ob>{
 	public static void main(String args[]) {
-		Thread t = new A();
+		Thread t = new A1();
 		t.start();
 		t.notify();
 	}

@@ -19,7 +19,7 @@ class ExtTest {
 		}
 		
 		String name = null; assert(name != null);
-		int i = 10; assert(i=15+i++);
+//		int i = 10; assert(i=15+i++);
 		boolean flag = false; assert (flag = true);
 		String s = null; assert false : s;
 		

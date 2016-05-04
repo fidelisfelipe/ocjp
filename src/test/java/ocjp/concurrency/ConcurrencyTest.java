@@ -1,10 +1,12 @@
-<<<<<<< HEAD
 package ocjp.concurrency;
 
 import static org.junit.Assert.*;
 
+import java.lang.Thread.State;
+
 import org.junit.Test;
 class Tarefa extends Thread{
+	
 	@Override
 	public void run() {
 		System.out.println("run");
@@ -35,7 +37,82 @@ class MinhaTarefa implements Runnable{
 	}
 }
 
+class OutraThread extends Thread{
+	int i;
+	@Override
+	public void run() {
+		i++;
+	}
+}
+
 public class ConcurrencyTest {
+	
+	@Test
+	public void testOutraThreadChamandoStart2x(){
+		OutraThread t = new OutraThread();
+		t.run();
+		assertTrue(t.i == 1);
+		t.start();//a thread já executou e finalizou por isso não executará run 2 x
+		assertFalse(t.getState() == State.TERMINATED);
+		assertTrue(t.i == 1);
+	}
+	
+	@Test
+	public void testNotify() throws Exception {
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					this.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}});
+		
+		//espera uma notificação
+		t.start();
+		
+		Thread t0 = new Thread(){
+			@Override
+			public void run() {
+				this.notify();
+				
+			}
+		};
+		//notifica a thread anterior com notfy
+		t0.start();
+		
+		assertFalse(t.isInterrupted());
+	}
+	
+	@Test
+	public void testNotifyAll() throws Exception {
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					this.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}});
+		
+		//espera uma notificação
+		t.start();
+		
+		Thread t0 = new Thread(){
+			@Override
+			public void run() {
+				this.notifyAll();
+				
+			}
+		};
+		//notifica a thread anterior com notfy
+		t0.start();
+		
+		assertFalse(t.isInterrupted());
+	}
+	
 	@Test
 	public void testSyncronize() throws Exception {
 		MinhaTarefa minhaTarefa = new MinhaTarefa();
@@ -62,31 +139,6 @@ public class ConcurrencyTest {
 		tarefa.notify();
 	}
 	
-	//Causes the currently executing thread object to temporarily pause 
-	//and allow other threads to execute
-	@Test
-	public void test() throws InterruptedException{
-		
-//		class Test implements Runnable{
-//			String name;
-//			
-//			public Test(String name) {
-//				this.name = name;
-//			}
-//			
-//			@Override
-//			public void run() {
-//				System.out.println(name);
-//			}
-//		}
-		
-//		Thread t1 = new Thread(new Test("t1"));
-//		Thread t2 = new Thread(new Test("t2"));
-//		
-//		t1.run();
-//		t2.run();
-		
-	}
 	
 	@Test
 	public void testThread() throws Exception {
@@ -95,46 +147,4 @@ public class ConcurrencyTest {
 	}
 	
 }
-=======
-package ocjp.concurrency;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
-public class ConcurrencyTest {
-
-	//Causes the currently executing thread object to temporarily pause 
-	//and allow other threads to execute
-	@Test
-	public void test() throws InterruptedException{
-		
-//		class Test implements Runnable{
-//			String name;
-//			
-//			public Test(String name) {
-//				this.name = name;
-//			}
-//			
-//			@Override
-//			public void run() {
-//				System.out.println(name);
-//			}
-//		}
-		
-//		Thread t1 = new Thread(new Test("t1"));
-//		Thread t2 = new Thread(new Test("t2"));
-//		
-//		t1.run();
-//		t2.run();
-		
-	}
-	
-	@Test
-	public void testThread() throws Exception {
-		Thread t = new Thread();
-		t.interrupted();
-	}
-	
-}
->>>>>>> fed9ffc4680653b996d711858a35673039b897e7

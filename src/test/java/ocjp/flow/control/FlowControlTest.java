@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package ocjp.flow.control;
 
 import static org.junit.Assert.*;
@@ -9,68 +8,10 @@ class Testando{
 	public Testando() {
 	}
 	
-	void testMethod(){
-		try{
-			System.out.println("Java");
-			return;
-		}finally{
-			System.exit(0);
-			System.out.println("Tiger");
-		}
-		
-	}
-}
-public class FlowControlTest {
-	@Test
-	public void test() throws Exception {
-		new Testando().testMethod();
-	}
+	void get(short num){System.out.println("Testando.get(short)");}
+	void get(double num){System.out.println("Testando.get(double)");}
+	void get(long num){System.out.println("Testando.get(long)");}
 	
-	@Test
-	public void testSwitch() {
-			int arg = 10;
-			
-			String result = "";
-			String expected = "JSPEJBJMSJNDI";
-			
-			switch (arg) {
-			case 0:  result = result.concat("Java");
-			case 10: result = result.concat("JSP");
-			case 20: result = result.concat("EJB");
-			case 30: result = result.concat("JMS");
-			case 40: result = result.concat("JNDI"); break;
-
-			default: result = result.concat("None");
-			}
-			
-			assertEquals("deve conter a string esperada",expected, result);
-			
-	}
-	@Test
-	public void testAssertsDeclaration() throws Exception {
-		String name = null;
-		assert (name != null);
-		
-//		int i = 10; assert(i=15+i++);declaração incorreta pois não retorna boolean
-		
-		boolean flag = false;
-		assert(flag = true);
-		
-		String string = null;
-		assert false: string;
-		
-	}
-}
-=======
-package ocjp.flow.control;
-
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-class Testando{
-	public Testando() {
-	}
 	void testMethod(){
 		try{
 			System.out.println("Java");
@@ -82,6 +23,7 @@ class Testando{
 		
 	}
 }
+
 public class FlowControlTest {
 	@Test
 	public void test() throws Exception {
@@ -118,5 +60,42 @@ public class FlowControlTest {
 			assertEquals("deve conter a string esperada",expected, result);
 			
 		}
+	
+	@Test
+	public void testAssertsDeclaration() throws Exception {
+		String name = null;
+		assert (name != null);
+		
+//		int i = 10; assert(i=15+i++);declaração incorreta pois não retorna boolean
+		
+		boolean flag = false;
+		assert(flag = true);
+		
+		String string = null;
+		assert false: string;
+		
+	}
+	
+	@Test
+	public void testSwitch2() throws Exception {
+		Integer arg = 20;
+		//Sim, pode se declarar assim
+		switch (arg) {
+		default:
+			System.err.println("no defined");
+		case 10:
+			System.out.println("ok is 100");
+		case 20:
+			System.out.println("ok is 200");
+
+		}
+	}
+	
+	@Test
+	public void testSobrecarga() throws Exception {
+		Integer num = new Integer(20);
+		Testando t = new Testando();
+		t.get(num);
+	}
 }
->>>>>>> fed9ffc4680653b996d711858a35673039b897e7
+

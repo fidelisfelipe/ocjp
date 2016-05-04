@@ -6,7 +6,7 @@ class Parent {
 	public Object covariante(){
 		Boolean b = true;
 		if(b = false){
-			''
+			
 		}
 		return "";
 	}

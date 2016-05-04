@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package ocjp.declarations.initialization.scoping;
 
 import static org.junit.Assert.*;
@@ -16,6 +15,31 @@ interface C{
 class D{
 	protected void getNewVal(){}
 }
+
+class TestCustom {
+	void aMethod(int arg) {};
+//	String aMethod(String arg) {};//alterando só o retorno não compila
+//	private void aMethod(String arg) {};//restringindo mais o modificador não compila
+	protected void aMethod(String arg) throws IndexOutOfBoundsException {};//ampliou o modificador e lançou exception
+}
+
+interface ITestar{
+	String show();
+}
+class TestarImpl extends java.lang.Object implements ITestar{
+	String name = "DEFAULT VALUE";
+	@Override
+	public String show() {
+		return null;
+	}
+
+	@Override
+	protected void finalize(){
+		name = null;
+	}
+	
+}
+
 public class ScopeTest extends D implements C{
 	@Test
 	public void test(){
@@ -50,26 +74,12 @@ public class ScopeTest extends D implements C{
 //		public String varTwo;//nem mesmo public
 	}
 	
-}
-=======
-package ocjp.declarations.initialization.scoping;
-
-import org.junit.Test;
-
-public class ScopeTest {
 	@Test
-	public void test(){
-		class Test{
-			void aMethod(String arg){
-				
-			}
-		}
-		class TestCustom extends Test{
-			void aMethod(int arg) {};
-//			String aMethod(String arg) {};//alterando só o retorno não compila
-//			private void aMethod(String arg) {};//restringindo mais o modificador não compila
-			protected void aMethod(String arg) throws IndexOutOfBoundsException {};//ampliou o modificador e lançou exception
-		}
+	public void testFinalize() throws Exception {
+		Object object = new TestarImpl();
+//		object.finalize(); //não compila pois não é acessivel pela instancia
+		System.out.println(object);
 	}
+	
 }
->>>>>>> fed9ffc4680653b996d711858a35673039b897e7
+

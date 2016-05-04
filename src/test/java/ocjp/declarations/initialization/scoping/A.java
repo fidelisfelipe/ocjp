@@ -1,24 +1,21 @@
-<<<<<<< HEAD
 package ocjp.declarations.initialization.scoping;
 
-class A {
+class A1 {
 	static String name = "";
-	public A() {
+	public A1() {
 		
 	}
 	String getName(){
 		return name;
 	}
 }
-class B extends A{
+class B1 extends A1{
 	public String getName() throws RuntimeException{
 		return "outro";
 	}
 }
-=======
-package ocjp.declarations.initialization.scoping;
 
 public class A {
 	public enum B{A,B,C}
 }
->>>>>>> fed9ffc4680653b996d711858a35673039b897e7
+

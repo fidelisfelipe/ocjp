@@ -9,7 +9,7 @@ class A extends Thread implements Runnable{
 	public static void main(String[] args) {
 		new A().start();
 		Runnable r = new A();
-		r.start();
+//		r.start(); //runnable nao tem start só run
 	}
 	
 }
