@@ -49,6 +49,12 @@ public class GenericsTest {
 	}
 	
 	@Test
+	public void testDeclareList(){
+		List<? super Integer> list = new ArrayList<Integer>();
+		list.add(200);
+	}
+	
+	@Test
 	public void testName() throws Exception {
 		Set<String> list = new HashSet<String>();
 		assertTrue(list.size() == 0);

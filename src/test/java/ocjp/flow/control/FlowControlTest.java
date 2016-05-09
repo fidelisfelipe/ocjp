@@ -24,7 +24,34 @@ class Testando{
 	}
 }
 
+
+
+
 public class FlowControlTest {
+	static final int TV = 0;
+	static final int LIGTH = 1;
+	static int DVD = 2;
+	
+	
+	public Boolean isValid(int i){
+		if(i < 1 || i > 12)
+			return new Boolean("incorrect value");
+		else
+			return new Boolean(true);
+	}
+	
+	private void testValue(int val){
+		assert isValid(val) : "Out of range value";
+	}
+	
+	
+	
+	@Test
+	public void testSampleAssert(){
+		FlowControlTest test = new FlowControlTest();
+		test.testValue(22);
+	}
+	
 	@Test
 	public void test() throws Exception {
 		new Testando().testMethod();
@@ -96,6 +123,31 @@ public class FlowControlTest {
 		Integer num = new Integer(20);
 		Testando t = new Testando();
 		t.get(num);
+	}
+	
+	
+	@Test
+	public void testSwitchFlow() throws Exception {
+		String [] args = {"0"};
+		
+		on(Integer.parseInt(args[0]));
+	}
+
+	private void on(int args) {
+		switch (args) {
+		case LIGTH:
+			System.out.println("LIGTH");
+			break;
+		case TV:
+			System.out.println("TV");
+			break;
+//		case DVD://deve ser final
+//			System.out.println("DVD");
+//			break;
+
+		default:
+			break;
+		}		
 	}
 }
 

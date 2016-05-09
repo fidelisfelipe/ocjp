@@ -17,12 +17,46 @@ import java.util.Formatter;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import org.junit.Test;
 
 public class ContentTest {
+	Number Float = 99.455f;
+	
+	@Test
+	public void testWrited() throws Exception {
+		Writer w = new BufferedWriter(new FileWriter("OPA"));
+	}
+	
+	@Test
+	public void testPattern() throws Exception {
+		Pattern p = Pattern.compile("Java Tiger Great");
+		Matcher m = p.matcher("great");
+		boolean find = false;
+		
+		if(m.find())
+			find = true;
+		assertFalse(find);	
+	}
+	
+	@Test
+	public void testStringBuffer() throws Exception {
+		String string = new String("java");
+		StringBuffer sb = new StringBuffer("java");
+		
+		assertFalse(string.equals(sb));
+		assertTrue(string.equals(sb.toString()));
+	}
+	@Test
+	public void testStringBuffer2() throws Exception {
+		String string = new String("java");
+		StringBuffer sb = new StringBuffer("java");
+		
+		assertTrue(sb.toString().equals(string));
+	}
 
 	@Test
 	public void test(){

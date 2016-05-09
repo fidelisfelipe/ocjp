@@ -19,6 +19,38 @@ class Filho extends Pai{
 }
 public class OOTest {
 	
+	@Test
+	public void testCasting() throws Exception {
+		Filho filho = new Filho();
+		Pai pai = new Pai();
+		
+		assertTrue("filho é um pai ",filho instanceof Pai);
+		assertFalse("pai não é filho ", pai instanceof Filho);
+		
+		//não compila
+		//filho = pai;//pai é um filho
+		
+		boolean lancaException = false;
+		try{
+			filho = (Filho)pai;//pai não conhece o filho
+		}catch(ClassCastException e){
+			//pai não conhece o filho, mas para compilação pode ser explicito o cast
+			//mesmo assim o pai ainda nao conhece o filho
+			
+			lancaException = true;
+			
+		}
+		
+		assertTrue("o pai lança exception pois ele não conhece o filho", lancaException);
+		
+		//passando o filho para o pai
+		//o filho é parte do pai
+		//o filho conhece o pai
+		pai = filho;//filho é um pai
+		pai = (Filho)filho;//filho é um filho 
+		pai = (Pai)filho;//filho é um pai
+	}
+	
 	@Test(expected = ClassCastException.class)
 	public void testCastClass() {
 		Pai Pai = new Pai();
