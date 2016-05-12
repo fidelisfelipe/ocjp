@@ -3,6 +3,7 @@ package ocjp.collections.generic;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,7 +41,50 @@ class Testar{
 	}
 }
 
+class VectorA{
+	@Override
+	public String toString() {
+		return getClass().getSimpleName();
+	}
+}
+class VectorB extends VectorA{
+	
+}
+class VectorC extends VectorB{
+	
+}
+class VectorD extends VectorC{
+	
+}
+
+
 public class GenericsTest {
+	
+	@Test
+	public void testVector() throws Exception {
+//		Why?
+//		The wildcard character (?) indicates unknown types, so the compiler does not allow adding or inserting into such types
+//		Vector vector = new Vector<? extends VectorA>();//Cannot instantiate the type Vector<? extends VectorA>
+//		Vector vector = new Vector<?>();//Cannot instantiate the type Vector<?>
+		Vector vectorNoType = new Vector();
+		vectorNoType.add(new VectorA());
+		vectorNoType.add(new VectorB());
+		assertTrue(Arrays.toString(vectorNoType.toArray()).equals("[VectorA, VectorB]"));
+		
+		//with warns:
+		//Type safety: The method add(Object) belongs to the raw type Vector. 
+		//References to generic type Vector<E> should be parameterized
+		Vector vectorOnTypeAndGen = new Vector<VectorA>();
+		vectorOnTypeAndGen.add(new VectorA());
+		vectorOnTypeAndGen.add(new VectorB());
+		assertTrue(Arrays.toString(vectorOnTypeAndGen.toArray()).equals("[VectorA, VectorB]"));
+
+		Vector<VectorA> vectorOnType = new Vector<VectorA>();
+		vectorOnType.add(new VectorA());
+		vectorOnType.add(new VectorB());
+		assertTrue(Arrays.toString(vectorOnType.toArray()).equals("[VectorA, VectorB]"));
+
+	}
 	
 	@Test
 	public void testLinkedDeclaration() throws Exception {

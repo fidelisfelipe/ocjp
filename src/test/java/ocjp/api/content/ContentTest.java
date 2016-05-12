@@ -2,16 +2,23 @@ package ocjp.api.content;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.io.UTFDataFormatException;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Formatter;
@@ -42,6 +49,16 @@ class ComparableImpl implements Comparable<String>{
 
 public class ContentTest {
 	Number Float = 99.455f;
+	
+	@Test
+	public void testDataInputStream() throws Exception {
+		Writer w = new OutputStreamWriter(new FileOutputStream("LerUTF8.txt"), Charset.forName("UTF-8"));
+		w.write(new String("A".getBytes("UTF-8"), "UTF-8"));
+		w.close();
+				
+		DataInputStream data = new DataInputStream(new BufferedInputStream(new FileInputStream("LerUTF8.txt")));
+		System.out.println(data.read());
+	}
 	
 	@Test
 	public void testDeclarePrintWriter() throws Exception {

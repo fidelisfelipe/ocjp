@@ -129,6 +129,37 @@ public class DeclarationTest extends Customer{
 	
 	static String name1 = "Java";
 	
+	@Test
+	public void testStringArrayAndStringVarArgsSaoIguais() throws Exception {
+		assertTrue(setValue(new String[]{"123"})[0].equals("AA"));
+	}
+	private String[] setValue(String... args){
+		int count = args.length-1;
+		for (String notUsed : args) {
+			args[count] = "AA";
+			count--;
+		}
+		return args;
+	}
+	
+	@Test
+	public void testPrecedenciaDoModSobreSubtracao() throws Exception {
+		Integer a = -102;
+		Integer b = 50;
+		Integer result = 8-a%b;
+		assertTrue(result == 10);
+	}
+	
+	@Test
+	public void testStringConcat() throws Exception {
+		String firstName = "Brain";
+		String lastName = " ";
+		String name = firstName+lastName;
+		name.concat("Christoper");
+		String displayName = name.trim();
+		assertTrue(displayName.length() == 5);
+	}
+	
 	@Test(expected = ClassCastException.class)
 	public void testException() throws Exception {
 		Object number = new Object();
