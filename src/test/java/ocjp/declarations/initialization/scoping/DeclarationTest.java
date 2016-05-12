@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import org.junit.Test;
 
+import ocjp.declarations.initialization.UmaClasse;
 import ocjp.declarations.initialization.UmaClasse.UmEnum;
 
 //dá preferência aos tipos simples
@@ -73,10 +74,313 @@ abstract class Customer{
 	abstract Object getCusName();
 }
 
+class OutraClasse extends UmaClasse{
+}
+interface ITestandoModificador{//only public & abstract are permitted
+	
+}
+abstract class OlhaOPega{
+	public void print(){}
+}
 
 
+class Subb{
+	Object get(){
+		return "Sub";
+	}
+}
+class Superr extends Subb{
+	@Override
+	protected String get(){
+		return "Super";
+	}
+}
+class Uma{
+	String method = "Uma";
+	String getMethod(){
+		return method;
+	}
+	float a(){return 1.2f;}
+}
+class Outra extends Uma{
+	String method = "Outra";
+	String getMethod() throws RuntimeException{
+		return method;
+	}
+//	Float a(){return 1.2f;}//não compila 
+}
+enum Month{
+	JAN{void test(){}},
+	MAY{void test(){}},
+	JUN{void test(){}};
+	abstract void test();
+//	void test();//not compile
+}
 public class DeclarationTest extends Customer{
+	
+	final String s = "JAVA";
+	
+	class InnerDeclar{
+		String s = "Java7";
+		void print(){
+			System.out.println(DeclarationTest.this.s);
+		}
+	}
+	
 	static String name1 = "Java";
+	
+	@Test(expected = ClassCastException.class)
+	public void testException() throws Exception {
+		Object number = new Object();
+		float f = ((Number)number).floatValue();//java.lang.Object cannot be cast to java.lang.Number
+
+	}
+	
+	@Test
+	public void testDeclarationInvalidA() throws Exception {
+		String str = "10";
+		int a = new Integer(10);
+//		boolean b = str == a;//incompatible operand types String and int
+	}
+	@Test
+	public void testDeclarationInvalidB() throws Exception {
+		String str = "10";
+		Integer a = 10;
+		boolean b = str == a.toString();//incompatible operand types String and int
+	}
+	@Test
+	public void testDeclarationInvalidC() throws Exception {
+		String str = "10";
+		Integer a = 10;
+		boolean b = str == a+"";//incompatible operand types String and int
+	}
+	@Test
+	public void testDeclarationValid() throws Exception {
+		String str = "10";
+		int a = new Integer(10);
+//		str += a;//incompatible operand types String and int
+	}
+	
+	@Test
+	public void testIntegerParseLong()  {
+		Integer.parseInt("123l");
+	}
+	
+	@Test
+	public void testlongLongArray() throws Exception {
+		Long arr[] = {2l,1l,0l};
+//		print(arr);//in the type DeclarationTest is not applicable for the arguments (Long[])
+	}
+	
+	private void print(long... arr){}
+	@Test
+	public void testToArrayVector() throws Exception {
+		Vector<String> set = new Vector<String>();
+//		String [] arr = set.toArray();//return object: Type mismatch: cannot convert from Object[] to String[]
+	}
+	@Test
+	public void testCastFloat() throws Exception {
+		float f = (float)23.0;
+	}
+	@Test
+	public void testIlegalDeclarators() throws Exception {
+//		String arr[200];//Syntax error on token "2", delete this token
+//		String arrr[2] = new String[]{};Syntax error on token "2", delete this token
+		String arr [] = null;
+	}
+	
+	@Test
+	public void testMonth() throws Exception {
+		//Month may = new Month();//não instancia enum
+		assertTrue(Month.values()[0] == Month.JAN);
+		assertTrue(Month.JAN.ordinal() == 0);
+		assertTrue(Month.JAN.name() == "JAN");
+		assertFalse(Month.JAN.equals("JAN"));
+		assertTrue(Month.JAN.name().equals("JAN"));
+		
+	}
+	
+	@Test
+	public void testLongArrayList() throws Exception {
+		ArrayList list = new ArrayList<Long>();
+		list.add(new Integer(223));
+		list.add(223l);
+		list.add(new Integer(223));
+	}
+	
+	@Test
+	public void testModIntDouble() throws Exception {
+		int num = -50;
+		System.out.println((num % 25.0));
+		assertTrue((num % 25.0) == 2);
+	}
+	
+	@Test
+	public void testArrayLenght() throws Exception {
+		String args[] = {"java","Test"};
+		assertTrue(args.length == 2);
+		assertTrue(args[0].length() == 2);
+		
+	}
+	
+	@Test
+	public void testStringListComInteger() throws Exception {
+		ArrayList<String> list = new ArrayList<String>();
+//		list.add(new Integer(2));//não compila
+	}
+	
+	@Test
+	public void testCharEqualsCharacter() throws Exception {
+		Character a = 65;
+		char c = 65;
+		if(c == a){
+			System.out.println("true");
+		}else{
+			System.out.println("false");
+		}
+	}
+	@Test
+	public void testVector() throws Exception {
+		Object a = new String("Java Tiger");
+		Object b = 99;
+		Object c = new Vector<String>();
+		Object d = a;
+		a = c;
+		c = b;
+		b = a;
+	}
+	
+	@Test
+	public void testEqualsStringBuffer() throws Exception {
+		StringBuffer sb = new StringBuffer("java");
+		StringBuffer sb2 = new StringBuffer("java");
+		assertFalse(sb == sb2);
+		assertFalse(sb.equals(sb2));
+	}
+	
+	@Test
+	public void testUmaOutra() throws Exception {
+		Uma a = new Outra();
+		assertTrue(a.method.equals("Uma"));
+		assertTrue(a.getMethod().equals("Outra"));
+	}
+	
+	@Test
+	public void testLaco() throws Exception {
+		Integer num = 0;
+		for(int i=0; i<0;i++)
+			for(int j=0; j<10;j++)
+			  num = 10-(i+j);
+		int num2 = num;
+		System.out.println(num2);
+	}
+	
+	@Test
+	public void testOperations() throws Exception {
+		byte b1 = ~5+1;//inverte e incrementa
+//		byte b2 = +b1;
+		System.out.println(b1);
+	}
+	
+	@Test
+	public void testPrecisaoDouble() throws Exception {
+		double a = 7.77;
+		double b = 8.67;
+		double c = 9.97;
+		System.out.printf("%.1f %.1f %.1f ",a,b,c);
+	}
+	
+	@Test
+	public void testGHenerics() throws Exception {
+		List<String> strings = new Vector<String>();
+		List<?> sub = strings;
+	}
+	
+	@Test
+	public void testCondition2() throws Exception {
+		boolean b1 = true;
+		Boolean b2 = false;
+		if(b2||b1 == false){
+			System.out.println("true");
+		}else{
+			System.out.println("false");
+		}
+	}
+	@Test
+	public void testCovariante() throws Exception {
+		Subb sub = new Subb();
+		Subb sup = new Superr();
+		System.out.println(sub.get()+" - "+sup.get());
+	}
+	
+	@Test
+	public void testCommandLine() throws Exception {
+		String[]args = {"x7+y8-z9=4P","[4789][+-=]"};
+		assertTrue((args[0].split(args[1])).length == 4);
+	}
+	
+	@Test
+	public void testNaoPerdePrecisao() throws Exception {
+		double doubleNum = 999.3550;
+		System.out.printf("%.2f",doubleNum);
+	}
+	
+	@Test
+	public void testValores() throws Exception {
+		Integer x,y,z;
+		for(x =10, y=11,z=12; x<y && x<z; x++,y--,z++){
+			assertTrue(x == 10);
+			assertTrue(y == 11);
+			assertTrue(z == 12);
+		}
+	}
+	
+	@Test
+	public void testConditions() throws Exception {
+		Integer a = 123; 
+		float b = 123f;
+		boolean c = false;
+		boolean testFalse = false;
+		
+		if(c & a == b){//& retorna 1 se forem ambos bits iguais e retorna 0 se forem diferentes
+			testFalse = true;
+		}
+		
+		assertFalse(testFalse);
+	}
+	
+	@Test
+	public void testStringandStringBuffer() throws Exception {
+		String a = new String("Java");
+		StringBuffer sb = new StringBuffer("Tiger");
+		String result = appender(a,sb);
+		assertTrue(result.equals("JavaTiger"));
+	}
+	
+	private String appender(Object... stringObjects){
+		String string = "";
+		
+		for(Object out: stringObjects){
+			string += out.toString();
+		}
+		
+		return string;
+	}
+	
+	@Test
+	public void testWrapperPrimitivesAssociate() throws Exception {
+		int a = new Integer("1");
+		char b = new Character(Character.MIN_VALUE);//não confunir Char(NÃO EXISTE) com Character
+		float c = new Float(1.0);
+		double d = new Double(2.0);
+		long e = new Long(12345);
+	}
+	
+	@Test
+	public void testProtected() throws Exception {
+		new UmaClasse();
+		new OutraClasse();
+	}
 	
 	@Test
 	public void testStringCompare() throws Exception {
@@ -88,7 +392,40 @@ public class DeclarationTest extends Customer{
 		assertFalse("criou um novo objeto",name3 == name1);
 		assertTrue("mesmo valor ",name3.equals(name1));
 	}
+	int b;
+	Integer a;
+	@Test
+	public void testIntegerIntPodemSerUtilizadosSemInicializarAssumindoValoresPadraoNullEZero() throws Exception {
+		assertTrue(a == null);
+		assertTrue(b == 0);
+	}
+	@Test
+	public void testIntegerIntDevemSerInicializadosNoScopoMethodo() throws Exception {
+		int b;
+		Integer a;
+//		assertTrue(a == null); The local variable a may not have been initialized
+//		assertTrue(b == 0); The local variable a may not have been initialized
+	}
 	
+	@Test
+	public void testConcatIntComString() throws Exception {
+		int a = 1;
+		String b = "2";
+		
+		b += a;
+		
+		assertTrue(b.equals("21"));
+	}
+	
+	@Test
+	public void testAndBitbitCidadoComTiposDiferentesPedindoComparacaoObjeto() throws Exception {
+		Integer a = 123;
+		float b = 123f;
+		boolean c = false;
+//		if(c & (a == c)){//The operator == is undefined for the argument type(s) int, boolean
+//		if(c | (a == c))////The operator == is undefined for the argument type(s) int, boolean
+//		}
+	}
 	
 	@Test
 	public void testVectorObject() throws Exception {

@@ -2,6 +2,9 @@ package ocjp.ooconcept;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.junit.Test;
 class Pai{
 	/**
@@ -17,7 +20,25 @@ class Filho extends Pai{
 	@Override
 	Filho methodo() throws RuntimeException{System.out.println("Filho.methodo()");return this;}
 }
+
+class Irmao extends Primo{
+	
+}
+class Irma extends Primo{
+	//deve sobrescrever com exception mais específiva
+	void fileException() throws FileNotFoundException{}
+}
+class Primo{
+	void fileException() throws IOException{}
+}
 public class OOTest {
+	
+	@Test
+	public void testCastingPrimos() throws Exception {
+		Irmao irmao = new Irmao();
+		Irma irma = new Irma();
+//		irmao = (Irmao)irma;//not compile - não adianta terem o mesmo primo, são irmão diferentes
+	}
 	
 	@Test
 	public void testCasting() throws Exception {

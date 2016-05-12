@@ -129,13 +129,23 @@ public class CollectionsTest {
 		
 		assertTrue(table.get(1) == "jan");  //substitui a chave existente
 		
-		boolean lancouException = false;
+		boolean naoAceitaValorNulo = false;
 		try {
 			table.put(3, null);
 		} catch (NullPointerException e) {
-			lancouException = true; 
+			naoAceitaValorNulo = true; 
 		}
-		assertTrue("lança nullpointer ao inserir valor nulo",lancouException);
+		
+		boolean naoAceitaChaveNulo = false;
+		
+		try {
+			table.put(null, "março");
+		} catch (NullPointerException e) {
+			naoAceitaChaveNulo = true; 
+		}
+		
+		assertTrue("lança nullpointer ao inserir valor nulo",naoAceitaValorNulo);
+		assertTrue("lança nullpointer ao inserir chave nulo",naoAceitaChaveNulo);
 		
 	}
 	@Test
@@ -150,12 +160,15 @@ public class CollectionsTest {
 		
 		assertTrue(table.get(1) == "jan");  //substitui a chave existente
 		
-		boolean lancouException = false;
+		boolean aceitaValorNulo = false;
 		try {
-			table.put(3, null);
+			table.put(3, null);//hashmap aceita valores nem chaves null 
 		} catch (NullPointerException e) {
-			lancouException = true; 
+			aceitaValorNulo = true; 
 		}
-		assertFalse("aceita valor nulo",lancouException);
+		
+		table.put(null, "março");
+		System.out.println(table.toString());
+		assertFalse("aceita valor nulo",aceitaValorNulo);
 	}
 }

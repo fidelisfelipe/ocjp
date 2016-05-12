@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Formatter;
 import java.util.Locale;
 import java.util.Scanner;
@@ -23,8 +24,29 @@ import java.util.regex.PatternSyntaxException;
 
 import org.junit.Test;
 
+class ComparatorImpl implements Comparator<String>{
+	@Override
+	public int compare(String a, String b){
+		return 0;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+}
+class ComparableImpl implements Comparable<String>{
+	@Override
+	public int compareTo(String object){return 0;}
+}
+
 public class ContentTest {
 	Number Float = 99.455f;
+	
+	@Test
+	public void testDeclarePrintWriter() throws Exception {
+		PrintWriter wr=new PrintWriter(new BufferedWriter(new FileWriter("Test.txt")));
+	}
 	
 	@Test
 	public void testWrited() throws Exception {
