@@ -57,6 +57,10 @@ class VectorD extends VectorC{
 	
 }
 
+//LinkedHashMap class stores key value pairs and maintains the insertion order of keys.
+//TreeMap does not maintain an ordered sequence of objects.
+//LinkedList collection implementation is suitable for maintaining an ordered sequence of objects when objects are frequently inserted and removed from the middle of the sequence
+//Vector and ArrayList require shifting of objects on insertion and deletion
 
 public class GenericsTest {
 	

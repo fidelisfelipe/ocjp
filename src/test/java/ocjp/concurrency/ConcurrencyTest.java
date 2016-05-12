@@ -20,7 +20,6 @@ class Tarefa extends Thread{
 	}
 }
 
-
 class OutraTarefa extends Thread implements Runnable{
 	@Override
 	public void run() {
@@ -56,7 +55,20 @@ class UmaTarefa extends Thread{
 		name += "Tiger";
 	}
 }
-
+/**
+ * 
+ * Only one thread at a time may acquire a monitor
+ * When the thread exits a synchronized block, it releases the monitor
+ * 
+ * When a thread encounters a synchronized block, 
+ * it must acquire the monitor associated with some Object before proceeding into the block. 
+ * When the thread exits a synchronized block, it releases the monitor. 
+ * Only one thread at a time may acquire a monitor, 
+ * which guarantees that there will never be more than one thread at a time inside the block. 
+ * If several blocks of code synchronize on the same object, 
+ * then only one thread can be in the entire set of blocks.
+ * 
+ */
 public class ConcurrencyTest extends Thread{
 	@Override
 	public void run() {

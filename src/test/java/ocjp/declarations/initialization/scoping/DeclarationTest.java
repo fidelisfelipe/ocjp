@@ -129,6 +129,18 @@ public class DeclarationTest extends Customer{
 	
 	static String name1 = "Java";
 	
+	/**
+	 * ClassCastException is thrown to indicate that the code has attempted to cast an object to a subclass of which it is not an instance.
+	 * This code causes ClassCastException to be thrown, since you cannot cast a Float to a Number. 
+	 * But the reverse is possible.
+	 * @throws Exception
+	 */
+	@Test(expected = ClassCastException.class)
+	public void testCastfloatForNumberNotPossibled() {
+		Object number = new Object();
+		float f = ((Number)number).floatValue();
+	}
+	
 	@Test
 	public void testStringArrayAndStringVarArgsSaoIguais() throws Exception {
 		assertTrue(setValue(new String[]{"123"})[0].equals("AA"));
@@ -218,6 +230,16 @@ public class DeclarationTest extends Customer{
 //		String arr[200];//Syntax error on token "2", delete this token
 //		String arrr[2] = new String[]{};Syntax error on token "2", delete this token
 		String arr [] = null;
+	}
+	
+	@Test
+	public void testFloatAndfloat() throws Exception {
+		Float a = 39.0F;
+		float b = (float)39.0;
+		
+		assertTrue(a.equals(b));
+		//Note that the statement attempting to dereference the primitive type float, which is not allowed
+		//assertNotCompile(b.equals(a));//Cannot invoke equals(Float) on the primitive type float
 	}
 	
 	@Test
